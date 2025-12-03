@@ -1,9 +1,9 @@
-package Day2
+package day2
 
 import java.io.File
 
 fun main() {
-    val input = File("src/Day2/data.txt").readText()
+    val input = File("src/day2/data.txt").readText()
     val regex = Regex("""(\d+)-(\d+)""")
 
     var result = 0L
@@ -15,9 +15,11 @@ fun main() {
 
         for (i in range) {
             val s = i.toString()
-            val l = s.length / 2
 
-            if (s.substring(0, l) == s.substring(l)) {
+            val eagPat = Regex("""(\d+)\1+""")
+            val lazPat = Regex("""(\d+?)\1+""")
+
+            if (eagPat.matches(s) || lazPat.matches(s)) {
                 result += s.toLong()
             }
         }

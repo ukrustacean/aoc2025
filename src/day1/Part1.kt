@@ -1,4 +1,4 @@
-package Day1
+package day1
 
 import java.io.File
 
@@ -21,7 +21,7 @@ fun parseInstruction(line: String): Instruction {
 infix fun Int.eumod(divisor: Int) = ((this % divisor) + divisor) % divisor
 
 fun main() {
-    val input = File("src/Day1/data.txt").readLines()
+    val input = File("src/day1/data.txt").readLines()
     val instructions = input.map(::parseInstruction)
 
     var currentPos = 50
