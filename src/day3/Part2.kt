@@ -14,22 +14,27 @@ fun List<Int>.maxIndex(fromIndex: Int, toIndex: Int): Int {
 
 fun main() {
     val input = File("src/day3/data.txt").readLines().map { it.map { d -> d.digitToInt() } }
-    var result = 0
+    var result = 0UL
 
     for (row in input) {
         val l = row.size - 1
 
-        var max1 = 0
-        for (i in 1..<l) {
-            if (row[i] > row[max1]) max1 = i
+        var rowResult = 0UL
+        var prev = -1
+
+        for (offset in 11 downTo 0) {
+            val start = prev + 1
+            val end = l - offset
+
+            val found = row.maxIndex(start, end)
+            rowResult *= 10UL
+            rowResult += row[found].toUInt()
+
+            prev = found
         }
 
-        var max2 = max1 + 1
-        for (i in (max1 + 2)..l) {
-            if (row[i] > row[max2]) max2 = i
-        }
-
-        result += row[max1] * 10 + row[max2]
+        println(rowResult)
+        result += rowResult
     }
 
     println(result)
