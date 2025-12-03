@@ -33,7 +33,6 @@ fun main() {
             prev = found
         }
 
-        println(rowResult)
         result += rowResult
     }
 
